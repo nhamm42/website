@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@Page.Title - Point of View Djs</title>
+        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <!--Start Navigation Bar-->
+                    <nav class="navbar navbar-inverse" role="navigation">
+                        <div class="collapse navbar-collapse row" id="main-nav">
+                            <div class="row">
+                                <div class="btn-group col-md-4">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="~/">Home</a></li>
+                                        <li><a href="~/News">News</a></li>
+                                        <li><a href="~/About">Biography</a></li>
+                                        <li><a href="~/Podcast">Podcast</a></li>
+                                        <li><a href="~/Contact">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                                <!--Start Social Networking-->
+                                <div class="btn-group col-md-2 col-md-offset-6">
+                                    <ul class="nav navbar-nav">
+                                        <li><img src="~/Images/TransparentSocialIcons/48/facebook.png" href="https://www.facebook.com/PointofViewDjs"></img></li>
+                                        <li><img src="~/Images/TransparentSocialIcons/48/twitter.png" href="https://twitter.com/PointofViewDjs"></img></li>
+                                        <li><img src="~/Images/TransparentSocialIcons/48/googleplus.png" href="https://twitter.com/PointofViewDjs"></img></li>
+                                        <li><img src="~/Images/TransparentSocialIcons/48/soundcloud.png" href="https://soundcloud.com/point-of-view"></img></li>
+                                    </ul>
+                                </div>
+                            <!--End Social Networking-->
+                            </div>
+                        </div>
+                    </nav>
+                    <!--End Navigation Bar-->
+                    <!--Start Logo -->
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <h1>
+                                <img src="~/Images/logo-trans.png" href="~/" alt="Responsive image" class="img-responsive, img-rounded">
+                            </h1>
+                        </div>
+                    </div>
+                    <!--End Logo -->
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @if (WebSecurity.IsAuthenticated) {
+                            <text>
+                                Hello, <a class="email" href="~/Account/Manage" title="Manage">@WebSecurity.CurrentUserName</a>!
+                                <form id="logoutForm" action="~/Account/Logout" method="post">
+                                    @AntiForgery.GetHtml()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log out</a>
+                                </form>
+                            </text>
+                        } else {
+                            <div class="row">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                    <ul class="list-inline">
+                                        <li><a href="~/Account/Register" class="btn btn-primary btn-lg active" role="button">Register</a></li>
+                                        <li><a href="~/Account/Login" class="btn btn-primary btn-lg active" role="button">Login</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </section>
+                    @*<nav>
+                        <ul id="menu">
+                            <li><a href="~/">Home</a></li>
+                            <li><a href="~/About">About</a></li>
+                            <li><a href="~/Contact">Contact</a></li>
+                        </ul>
+                    </nav>*@
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="row content-wrapper">
+                <div class="col-md-6 col-md-offset-3">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Web Page</p>
+                </div>
+            </div>
+        </footer>
+        @RenderSection("Scripts", required: false)
+    </body>
+</html>
